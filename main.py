@@ -37,6 +37,13 @@ graph = build_graph(st.session_state.api_key)
 
 # Input for scraping a URL
 url = st.text_input("🔗 Paste URL to scrape")
+# Create a button to clear the input
+if st.button("Clear"):
+    st.session_state.chat_history = []  # Reset chat history
+    st.session_state.chat_ready = False  # Reset chat readiness
+    st.session_state.summary = ""  # Clear summary
+    st.session_state.current_url = " "  # Clear current URL
+    url = ""  # Clear URL input
 
 if st.button("Scrape and Summarize"):
     if not url.strip():
@@ -66,24 +73,25 @@ if st.session_state.chat_ready:
     st.divider()
     st.subheader("💬 Ask a question")
 
-    query = st.text_input("Type your question")
+    # Chat input widget: user types question and presses Enter to send
+    query = st.chat_input("Type your question here...")
 
-    if st.button("Ask"):
-        if not query.strip():
-            st.error("Please enter a question.")
-        else:
-            with st.spinner("Generating answer..."):
-                try:
-                    chat_state = {
-                        "url": st.session_state.current_url,
-                        "query": query.strip()
-                    }
-                    result = graph.invoke(chat_state)
-                    response = result.get("response", "No response generated.")
-                    st.session_state.chat_history.append(("user", query.strip()))
-                    st.session_state.chat_history.append(("assistant", response))
-                except Exception as e:
-                    st.error(f"Error: {e}")
+    if query:  # triggers when user presses Enter after typing
+        with st.spinner("Generating answer..."):
+            try:
+                chat_state = {
+                    "url": st.session_state.current_url,
+                    "query": query.strip()
+                }
+                result = graph.invoke(chat_state)
+                response = result.get("response", "No response generated.")
+                st.session_state.chat_history.append(("user", query.strip()))
+                st.session_state.chat_history.append(("assistant", response))
+            except Exception as e:
+                st.error(f"Error: {e}")
 
+    # Render the chat history as chat bubbles/messages
     for role, message in st.session_state.chat_history:
-        st.markdown(f"**{role.title()}:** {message}")
+        with st.chat_message(role):
+            st.markdown(message)
+

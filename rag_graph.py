@@ -29,9 +29,15 @@ def build_graph(api_key: str):
         return state
 
     def summarize_node(state):
-        prompt = f"Summarize this web page:\n\n{state['scraped_text']}"
+        prompt = (
+            "You are an expert summarizer. Read the provided URL's scrapped text carefully and provide a detailed, "
+            "clear, and well-structured summary. Include the main points, important facts, and any relevant details "
+            "that help fully understand the content. Use complete sentences and organize the summary logically.\n\n"
+            f"Text to summarize:\n{state['scraped_text']}\n\nSummary:"
+        )
         state["summary"] = llm.invoke(prompt)
         return state
+
 
     def query_node(state):
         vectorstore = load_vectorstore(embeddings)
@@ -42,18 +48,23 @@ def build_graph(api_key: str):
 
     def generate_node(state):
         prompt = f"""
-        Use the following context to answer the question:
+    You are an expert assistant. Use the following context extracted from the provided URL to answer the question thoroughly and accurately. 
+    If the answer is not explicitly in the context, respond with "Information not found in the provided context."
 
-        Context:
-        {state['context']}
+    Context:
+    {state['context']}
 
-        Question: {state['query']}
-        """
+    Question:
+    {state['query']}
+
+    Please provide a detailed, clear, and complete answer based only on the above context.
+    """
         response = llm.invoke(prompt)
         memory.chat_memory.add_user_message(state["query"])
         memory.chat_memory.add_ai_message(response)
         state["response"] = response
         return state
+
 
     # Define graph
     graph = StateGraph(RAGState)

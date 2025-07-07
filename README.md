@@ -101,16 +101,13 @@ pip freeze > requirements.txt
 ### File Stucture
 ai-agent-scrape-gpt/
 ├── agents/
-│   ├── rag_graph.py            # LangGraph node and edge logic
-│   └── memory.py               # Memory buffer or vector memory
-├── llm/
-│   ├── gemini_wrapper.py       # Gemini API call handler
-│   └── embedder.py             # Embedding function (Gemini or fallback)
-├── html_scraper.py             # URL scraping and preprocessing logic
-├── vectorstore/
-│   └── store.py                # FAISS/Chroma setup and retrieval
+│   ├── vectorstore.py          # FAISS/Chroma setup and retrieval
+├── utils/
+│   ├── html_scrapper.py        # URL scraping and preprocessing logic
+├── data/
+│   ├── faiss store.py          # Faiss data store
 ├── main.py                     # FastAPI or Streamlit frontend
-├── faiss_index                 # FAISS index files
+├── rag_graph                   # Langgraph Graph 
 ├── requirements.txt
 └── README.md
 
@@ -123,7 +120,6 @@ ai-agent-scrape-gpt/
 | `chunk_embed_node` | Chunk + Embed + Store in FAISS                 |
 | `retrieve_node`    | Retrieve top-k chunks from FAISS               |
 | `generate_node`    | Call Gemini with retrieved context             |
-| `memory_node`      | Track prior conversation (optional state save) |
 | `chat_node`        | Format + return final response                 |
 
 

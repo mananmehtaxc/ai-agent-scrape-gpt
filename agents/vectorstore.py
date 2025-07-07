@@ -1,5 +1,5 @@
 import os
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.schema.embeddings import Embeddings
 from langchain.docstore.document import Document
 from langchain.text_splitter import CharacterTextSplitter
