@@ -125,3 +125,6 @@ ai-agent-scrape-gpt/
 | `generate_node`    | Call Gemini with retrieved context             |
 | `memory_node`      | Track prior conversation (optional state save) |
 | `chat_node`        | Format + return final response                 |
+
+
+test url: https://www.housebeautiful.com/lifestyle/gardening/g2495/indoor-plants/
