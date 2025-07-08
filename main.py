@@ -1,8 +1,10 @@
 import streamlit as st
 from rag_graph import build_graph
 
-st.set_page_config(page_title="ScrapeGPT", layout="wide")
-st.title("🌐 ScrapeGPT — Chat with Web Pages")
+st.set_page_config(page_title="AI Agent Scrape GPT", layout="wide")
+st.title("🌐 AI Agent — Chat with Web Pages")
+st.caption("💡 Summarize and chat with any public web page using Gemini-powered AI.")
+
 
 # Inputs for API key and loading assistant
 api_key = st.text_input("🔑 Enter your Google API Key", type="password")
@@ -42,8 +44,9 @@ if st.button("Clear"):
     st.session_state.chat_history = []  # Reset chat history
     st.session_state.chat_ready = False  # Reset chat readiness
     st.session_state.summary = ""  # Clear summary
-    st.session_state.current_url = " "  # Clear current URL
+    st.session_state.current_url = ""  # Clear current URL
     url = ""  # Clear URL input
+
 
 if st.button("Scrape and Summarize"):
     if not url.strip():

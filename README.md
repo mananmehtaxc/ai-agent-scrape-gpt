@@ -99,6 +99,8 @@ pip freeze > requirements.txt
 ---
 
 ### File Stucture
+
+```
 ai-agent-scrape-gpt/
 ├── agents/
 │   ├── vectorstore.py          # FAISS/Chroma setup and retrieval
@@ -110,6 +112,7 @@ ai-agent-scrape-gpt/
 ├── rag_graph                   # Langgraph Graph 
 ├── requirements.txt
 └── README.md
+```
 
 ---
 ###  LangGraph Node Design
