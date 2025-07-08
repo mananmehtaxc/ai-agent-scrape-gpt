@@ -3,6 +3,8 @@
 *A Chat-Aware RAG Agent Built from URLs Using Google Gemini Model*
 
 ---
+### Generic Project Setup
+```
 # Clone and enter project
 git clone <repo-url>
 cd <repo-folder>
@@ -25,6 +27,7 @@ deactivate
 
 # Freeze requirements.txt after installing new package
 pip freeze > requirements.txt
+```
 ---
 
 ### ✅ Components Overview
@@ -125,5 +128,8 @@ ai-agent-scrape-gpt/
 | `generate_node`    | Call Gemini with retrieved context             |
 | `chat_node`        | Format + return final response                 |
 
-
-test url: https://www.housebeautiful.com/lifestyle/gardening/g2495/indoor-plants/
+---
+### Test Url
+```
+https://www.housebeautiful.com/lifestyle/gardening/g2495/indoor-plants/
+```
