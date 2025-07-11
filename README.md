@@ -1,6 +1,6 @@
 ## 🚀 Project Name: **AI Agent ScrapeGPT**
 
-*A Chat-Aware RAG Agent Built from URLs Using Google Gemini Model*
+* AI-powered agent that extracts content from websites and enables users to summarize, analyze, and interact with the data through a conversational interface powered by Large Language Models (LLMs). A Chat-Aware RAG Agent Built from URLs Using Google Gemini Model*
 
 ---
 ### Generic Project Setup
